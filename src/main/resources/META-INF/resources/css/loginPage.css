@@ -1,0 +1,64 @@
+
+body {
+    background-color: #000000;
+    margin: 4.5em;
+    font-family: 'Gotham', sans-serif;
+    height: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 40% 41%;
+    justify-content: center;
+    align-content: center;
+
+}
+#logo-container
+{
+    height: 100%;
+}
+img{
+    margin-top: 10em;
+    filter: invert(1);
+}
+#login
+{
+    color: white;
+    font-weight: 1000;
+}
+#title-container{
+    font-size: 60px;
+    margin-top: 1em;
+}
+#title-X{
+    letter-spacing: -1.2px;
+    line-height: 84px;
+
+}
+#title-X-2
+{
+    margin-bottom: 1em;
+    margin-top: 0.3em;
+}
+#join-us
+{
+    font-size: xx-large;
+}
+button {
+    margin: 1.5em 0 1.5em 0;
+    width: 65%;
+    padding: 10px;
+    background-color: #00acee;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 900;
+}
+#login-button
+{
+    margin: 1.5em 0 0 0;
+    color: #00acee;
+    background-color: #000000;
+    border: white 1px solid;
+}

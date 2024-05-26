@@ -1,0 +1,90 @@
+body
+{
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: 23% 75%;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Gotham', sans-serif;
+}
+#user-container
+{
+    margin-bottom: 1em;
+}
+#user
+{
+    width: 90%;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 900;
+    margin: 1.5em 0 0 0;
+    color: #026991;
+    background-color: #000000;
+    border: white 1px solid;
+
+}
+#logo{
+    filter: invert(1);
+    max-width: 2em;
+    margin: 0.5em;
+}
+#menu
+{
+    margin: 0.5em 1em 1em 2em;
+}
+button, #new-tweet-button{
+    margin: 0.5em 0 0.5em 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #00acee;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 900;
+}
+#log-out
+{
+    display: flex;
+    align-items: flex-end;
+}
+#stream-container{
+    display: block;
+    height: 100%;
+    border-left: #4d4d4d 0.001cm solid;
+    border-right: #4d4d4d 0.001cm solid;
+    width: 70%;
+}
+.tweet
+{
+    width: fit-content(100%);
+    border-bottom: #4d4d4d 0.001cm solid;
+    padding: 1em;
+}
+#empty-post{
+    padding: 1em;
+}
+#new-tweet-button
+{
+    width: 25%;
+    right: 0;
+}
+#new-tweet-field
+{
+    width: 95%;
+    margin: 1em;
+    height: 2em;
+    background-color: black;
+    color: rgb(128, 128, 128);
+    border: none;
+    font-size: xx-large;
+}
+.author{
+    font-weight: bold;
+    margin: 1em;
+}
+.info-tweet{
+    display: flex;
+}
