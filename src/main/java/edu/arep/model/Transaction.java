@@ -10,4 +10,6 @@ public class Transaction {
     private double amount;
     private String date;
     private boolean isFraudulent;
+
+
 }
