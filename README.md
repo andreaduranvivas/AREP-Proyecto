@@ -2,7 +2,7 @@
 
 ## Descripción
 
-
+En este repositorio encontrarás una copia de nuestro proyecto final, que consiste en un prototipo inicial de una plataforma de transacciones bancarias. El sistema permite visualizar si una transacción es fraudulenta o no.
 
 ## Comenzando
 
@@ -41,14 +41,21 @@ Y ejecutamos el siguiente comando para correr el repositorio con quarkus
 mvn quarkus:dev
 ```
 
-Para visualizar la aplicación, escogemos algún navegador e ingresamos la URL http://localhost:8080/ en la barra de direcciones. Allí encontraremos la primera página de la aplicación,
-la cual se basa en un formulario para iniciar sesión o registrarse. Una vez se inicie la sesión, hallaremos un formulario donde se podrían subir y ver las transacciones de los usuarios,
+Para visualizar la aplicación, escogemos algún navegador e ingresamos la URL http://localhost:8080/ en la barra de direcciones. Allí encontraremos la primera página de la aplicación, en la cual tendras que escoger si registrarte o iniciar sesión.
+![Inicio](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/b4ace571-c3b1-4f57-b8b1-35566c93f5eb)
+
+Luego verás un formulario para iniciar sesión o registrarse.
 los cuales estarán almacenados en la base de datos.
 
-![image](multimedia/login.png)
+![InicioSesion](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/84cd083e-50fb-4c1d-ad0b-bbcbbe0bd88a)
 
-En la sección de *despliegue* se presenta un video demostrando el funcionamiento de la aplicación, haciendo uso de S3 en AWS.
-Para ello usamos AWS Cognito, dos servicios lambda, y un API gateway
+Una vez se inicie la sesión, hallaremos un formulario donde se podrían subir y ver las transacciones de los usuarios,
+
+![pagTransacciones](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/7789a595-be07-4901-bd05-b99facfa17ae)
+
+
+La aplicación se desplegó en S3 en AWS.
+Para usamos AWS Cognito, dos servicios lambda, y un API gateway
 
 ## Pruebas
 
@@ -115,41 +122,39 @@ La arquitectura del prototipo consta de los siguientes componentes:
 - **MongoDB:** Es la base de datos donde almacenaremos los tweets.
 
 A continuación se ve el diagrama de la arquitectura.
-![image](multimedia/arquitectura2.png)
+![Arquitectura proyecto final AREP drawio (1)](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/acc8fd21-48d4-4b70-91af-9cba3c214e81)
+
 
 ## Despliegue
 
 Para desplegar la aplicación en AWS, se deben seguir los siguientes pasos:
 
 1. Crear un bucket en S3 para alojar los archivos del FrontEnd de la aplicación.
-    ![S3](multimedia/S3.png)
 
+   ![S3](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/3b71bad0-6432-4602-b2e3-d69ad7a12334)
 
-2. Crear un grupo de usuarios en AWS Cognito. Crear un pool de identidades en AWS Cognito.
+3. Crear un grupo de usuarios en AWS Cognito. Crear un pool de identidades en AWS Cognito.
     ![image](multimedia/Cognito.png)
 
 
-3. Crear una política de IAM para el pool de identidades.
+4. Crear una política de IAM para el pool de identidades.
    ![image](multimedia/IAM.png)
 
 
-4. Crear 2 funciones lambda para los servicios de Transaction y . Debido a ciertas dependencias incompatibles entre quarkus y AWS, creamos otra rama
+5. Crear 2 funciones lambda para los servicios de Transaction y . Debido a ciertas dependencias incompatibles entre quarkus y AWS, creamos otra rama
 llamada 'dev' en la que se encuentra el código de las funciones lambda. Así que el jar necesario para crearlas, se crea al haber hecho un `git checkout dev` 
 y luego un `mvn clean package`
 
-    ![image](multimedia/lambdaTransaction.png)
+ ![GET](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/7488d973-49a7-4cfe-a2de-25dfe3cb9af7)
 
-
-5. Crear un API Gateway para exponer las funciones lambda.
+6. Crear un API Gateway para exponer las funciones lambda.
    ![image](multimedia/API.png)
 
 
-6. Exponer el API Gateway en internet.
-   ![image](multimedia/Etapa.png)
+7. Exponer el API Gateway en internet.
 
-En el siguiente video se muestra el despliegue de la aplicación en AWS, junto con una demostración de su funcionamiento.
+   ![post](https://github.com/andreaduranvivas/AREP-Proyecto/assets/80064378/d7cc6097-4225-427d-96be-ee4473359125)
 
-[![multimedia/login.png](multimedia/login.png)](https://youtu.be/lVfHdSIa3IA)
 
 ## Autores
 
