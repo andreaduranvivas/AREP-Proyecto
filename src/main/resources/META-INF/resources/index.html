@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transaction Management</title>
-  <link rel="stylesheet" href="css/transactionPage.css">
-</head>
+<html>
+  <head>
+    <title>Transaction Manager</title>
+    <style>
+      h1 {
+        font-size: 70px;
+        text-align: center;
+      }
 
-<body>
-<div class="container">
-  <h1>Transaction Management</h1>
-  <form id="transaction-form">
-    <label for="sourceAccount">Source Account:</label>
-    <input type="text" id="sourceAccount" name="sourceAccount" required>
-
-    <label for="destinationAccount">Destination Account:</label>
-    <input type="text" id="destinationAccount" name="destinationAccount" required>
-
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" name="amount" required>
-
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
-
-    <label for="isFraudulent">Is Fraudulent:</label>
-    <input type="checkbox" id="isFraudulent" name="isFraudulent">
-
-    <button type="submit">Add Transaction</button>
-  </form>
-
-  <h2>All Transactions</h2>
-  <button id="toggle-transactions-btn">Hide Traceability</button>
-  <ul id="transaction-list"></ul>
-</div>
-<script src="js/transaction.js"></script>
-</body>
+      .button {
+        display: block;
+        width: 200px;
+        height: 60px;
+        margin: 2em auto;
+        text-align: center;
+        line-height: 60px;
+        font-size: 24px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Transaction Manager</h1>
+    <a
+      href="https://xlogin.auth.us-east-1.amazoncognito.com/login?client_id=4t926nlb1th8s4afb0dolcakoo&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Ftransactions-arep-bucket.s3.us-east-1.amazonaws.com%2FtransactionManager.html"
+      class="button"
+      >Sign in</a
+    >
+    <a
+      href="https://xlogin.auth.us-east-1.amazoncognito.com/signup?client_id=4t926nlb1th8s4afb0dolcakoo&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Ftransactions-arep-bucket.s3.us-east-1.amazonaws.com%2FtransactionManager.html"
+      class="button"
+      >Sign up</a
+    >
+  </body>
 </html>

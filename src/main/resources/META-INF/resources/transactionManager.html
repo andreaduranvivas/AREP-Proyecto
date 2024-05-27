@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction Management</title>
+    <link rel="stylesheet" href="css/transactionPage.css" />
+  </head>
+
+  <body>
+    <div id="log-out">                                                  
+      <button id="logout-button" type="submit" onclick="location.href='https://xlogin.auth.us-east-1.amazoncognito.com/logout?client_id=4t926nlb1th8s4afb0dolcakoo&logout_uri=https://transactions-arep-bucket.s3.us-east-1.amazonaws.com/index.html'">Log Out</button>
+    </div>
+    <h1>Transaction Management</h1>
+    <div class="container">
+      <div id="create-transaction-container" class="transaction-container">
+        <form id="transaction-form">
+          <label for="sourceAccount">Source Account:</label>
+          <input type="text" id="sourceAccount" name="sourceAccount" required placeholder="Enter source account"/>
+
+          <label for="destinationAccount">Destination Account:</label>
+          <input
+            type="text"
+            id="destinationAccount"
+            name="destinationAccount"
+            required
+            placeholder="Enter destination account"
+          />
+
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" required placeholder="Enter amount"/>
+
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required />
+          <div id="switch-fraudulen">
+            <label for="isFraudulent">Is Fraudulent:</label>
+            <input type="checkbox" id="isFraudulent" name="isFraudulent" />
+          </div>
+
+          <button type="submit">Add Transaction</button>
+        </form>
+      </div>
+      <div id="my-transactions-container" class="transaction-container">
+        <h2>My Transactions</h2>
+          <button id="toggle-my-transactions-btn">Hide Traceability</button>
+          <ul id="my-transaction-list"></ul>
+        </div>
+      </div>
+    </div>
+    <div id="all-transactions-container" class="transaction-container">
+      <h2>All Transactions</h2>
+      <button id="toggle-transactions-btn">Hide Traceability</button>
+      <ul id="transaction-list"></ul>
+    </div>
+    <script src="js/transaction.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>
