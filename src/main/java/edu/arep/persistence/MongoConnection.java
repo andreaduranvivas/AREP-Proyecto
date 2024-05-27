@@ -1,18 +1,21 @@
 package edu.arep.persistence;
 
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-@ApplicationScoped
 public class MongoConnection {
 
-    @Inject
-    MongoClient client;
+    private final MongoClient client;
+
+    public MongoConnection() {
+        this.client = MongoClients.create("mongodb+srv://briancfajardo:admin@cluster0.jyodi8s.mongodb.net/?retryWrites=true&w=majority");
+    }
 
     public MongoCollection<Document> getCollection() {
-        return client.getDatabase("FraudDetection").getCollection("Frauds");
+        MongoDatabase database = client.getDatabase("FraudDetectionDB");
+        return database.getCollection("Fraudes");
     }
 }
