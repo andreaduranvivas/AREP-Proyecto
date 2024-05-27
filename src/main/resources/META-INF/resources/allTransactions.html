@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Transactions</title>
-    <link rel="stylesheet" href="css/transactionPage.css">
+    <link rel="stylesheet" href="css/transactionPage.css" />
   </head>
   <body>
-  <div class="container">
-    <h1>All Transactions</h1>
-    <ul id="transaction-list"></ul>
-  </div>
-  <script src="js/allTransactions.js"></script>
+    <div id="log-out">
+      <button
+        id="logout-button"
+        type="submit"
+        onclick="location.href='https://xlogin.auth.us-east-1.amazoncognito.com/logout?client_id=4t926nlb1th8s4afb0dolcakoo&logout_uri=https://transactions-arep-bucket.s3.us-east-1.amazonaws.com/index.html'"
+      >
+        Log Out
+      </button>
+    </div>
+    <div class="container">
+      <h1>All Transactions</h1>
+      <ul id="transaction-list"></ul>
+    </div>
+    <script src="js/allTransactions.js"></script>
   </body>
 </html>

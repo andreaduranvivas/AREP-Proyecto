@@ -19,7 +19,8 @@ public class TransactionPersistence {
     MongoConnection client;
 
     public void insertTransaction(Transaction transaction) {
-        Document doc = new Document("sourceAccount", transaction.getSourceAccount())
+        Document doc = new Document("username", transaction.getUsername())
+                .append("sourceAccount", transaction.getSourceAccount())
                 .append("destinationAccount", transaction.getDestinationAccount())
                 .append("amount", transaction.getAmount())
                 .append("date", transaction.getDate())
@@ -31,14 +32,7 @@ public class TransactionPersistence {
         MongoCollection<Document> collection = client.getCollection();
         Document doc = collection.find(eq("_id", new ObjectId(id))).first();
         if (doc != null) {
-            Transaction transaction = new Transaction();
-            transaction.setId(doc.getObjectId("_id").toString());
-            transaction.setSourceAccount(doc.getString("sourceAccount"));
-            transaction.setDestinationAccount(doc.getString("destinationAccount"));
-            transaction.setAmount(doc.getDouble("amount"));
-            transaction.setDate(doc.getString("date"));
-            transaction.setFraudulent(doc.getBoolean("isFraudulent"));
-            return transaction;
+            return createTransaction(doc);
         }
         return null;
     }
@@ -47,15 +41,20 @@ public class TransactionPersistence {
         MongoCollection<Document> collection = client.getCollection();
         List<Transaction> transactions = new ArrayList<>();
         for (Document doc : collection.find()) {
-            Transaction transaction = new Transaction();
-            transaction.setId(doc.getObjectId("_id").toString());
-            transaction.setSourceAccount(doc.getString("sourceAccount"));
-            transaction.setDestinationAccount(doc.getString("destinationAccount"));
-            transaction.setAmount(doc.getDouble("amount"));
-            transaction.setDate(doc.getString("date"));
-            transaction.setFraudulent(doc.getBoolean("isFraudulent"));
-            transactions.add(transaction);
+            transactions.add(createTransaction(doc));
         }
         return transactions;
+    }
+
+    public Transaction createTransaction(Document doc){
+        Transaction transaction = new Transaction();
+        transaction.setId(doc.getObjectId("_id").toString());
+        transaction.setUsername(doc.getString("username"));
+        transaction.setSourceAccount(doc.getString("sourceAccount"));
+        transaction.setDestinationAccount(doc.getString("destinationAccount"));
+        transaction.setAmount(doc.getDouble("amount"));
+        transaction.setDate(doc.getString("date"));
+        transaction.setFraudulent(doc.getBoolean("isFraudulent"));
+        return transaction;
     }
 }
