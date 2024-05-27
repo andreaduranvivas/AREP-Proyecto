@@ -1,28 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const transactionForm = document.getElementById("transaction-form");
-  const transactionList = document.getElementById("transaction-list");
   const myTransactionList = document.getElementById("my-transaction-list");
   const jwt = parseJwt(_getIdToken());
   const email = jwt.email;
   const username = jwt["cognito:username"];
-  const server = "http://localhost:8080";
-  const toggleTransactionsBtn = document.getElementById(
-    "toggle-transactions-btn"
-  );
+  const server = "https://8yc6yop4e7.execute-api.us-east-1.amazonaws.com/Beta";
   const toggleMyTransactionsBtn = document.getElementById(
     "toggle-my-transactions-btn"
   );
 
-  let showTransactions = true;
   let showMyTransactions = true;
 
   fetchTransactions();
   transactionForm.addEventListener("submit", handleSubmitForm);
 
-  toggleTransactionsBtn?.addEventListener("click", () => {
-    showTransactions = !showTransactions;
-    updateTransactionsVisibility();
-  });
   toggleMyTransactionsBtn?.addEventListener("click", () => {
     showMyTransactions = !showMyTransactions;
     updateMyTransactionsVisibility();
@@ -32,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const formData = new FormData(transactionForm);
-    const isFraudulent = document.getElementById("isFraudulent").checked;
 
     const transaction = {
       email: email,
@@ -41,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       destinationAccount: formData.get("destinationAccount"),
       amount: parseFloat(formData.get("amount")),
       date: formData.get("date"),
-      isFraudulent: isFraudulent,
     };
 
     postTransaction(transaction)
@@ -49,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           fetchTransactions();
           transactionForm.reset();
+          mostrarPopup();
         } else {
           alert("Failed to add transaction");
         }
@@ -80,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayTransactions(transactions) {
-    transactionList.innerHTML = "";
     myTransactionList.innerHTML = "";
     transactions.forEach((transaction) => {
       const li = document.createElement("li");
@@ -91,24 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p> Source Account: ${transaction.sourceAccount} </p>
                     <p> Destination Account:${transaction.destinationAccount} </p>
                     <p> Amount: $${transaction.amount}  </p>
-                    <p> Was Fraudulent: ${transaction.fraudulent} </p>
+                    <p> Was it fraudulent?: ${transaction.isFraudulent} </p>
                 </div>
             </div>
             `;
-      transactionList.insertBefore(li, transactionList.firstChild);
       if (transaction.username == username) {
         myTransactionList.insertBefore(li, myTransactionList.firstChild);
       }
     });
   }
 
-  function updateTransactionsVisibility() {
-    if (showTransactions) {
-      transactionList.style.display = "";
-    } else {
-      transactionList.style.display = "none";
-    }
-  }
   function updateMyTransactionsVisibility() {
     if (showMyTransactions) {
       myTransactionList.style.display = "";
@@ -131,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!idToken) {
       throw new Error("id_token not found in URL fragment");
     }
-    console.log(idToken);
     return idToken;
   }
 
@@ -149,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!idToken) {
       throw new Error("id_token not found in URL fragment");
     }
-    console.log(idToken);
     return idToken;
   }
 });

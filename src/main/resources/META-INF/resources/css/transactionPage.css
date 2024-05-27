@@ -54,6 +54,10 @@ button {
     border: none;
     cursor: pointer;
 }
+#submit-transaction
+{
+    margin-top: 2em;
+}
 
 ul {
     list-style: none;

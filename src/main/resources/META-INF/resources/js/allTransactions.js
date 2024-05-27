@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const transactionList = document.getElementById('transaction-list');
-
+    const server = "http://localhost:8080";
     fetchTransactions();
 
     function fetchTransactions() {
@@ -13,11 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayTransactions(transactions) {
-        transactionList.innerHTML = '';
-        transactions.forEach(transaction => {
-            const li = document.createElement('li');
-            li.textContent = `${transaction.date} - ${transaction.sourceAccount} -> ${transaction.destinationAccount}: $${transaction.amount} (Fraudulent: ${transaction.isFraudulent})`;
-            transactionList.appendChild(li);
+        transactionList.innerHTML = "";
+        transactions.forEach((transaction) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+                <div class="history-transaction-container">
+                    ${transaction.date}
+                    <div>
+                        <p> Source Account: ${transaction.sourceAccount} </p>
+                        <p> Destination Account:${transaction.destinationAccount} </p>
+                        <p> Amount: $${transaction.amount}  </p>
+                        <p> Was Fraudulent: ${transaction.fraudulent} </p>
+                    </div>
+                </div>
+                `;
+          transactionList.insertBefore(li, transactionList.firstChild);
         });
-    }
+      }
 });

@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="Logo.jpg" type="image/x-icon">
     <title>Transaction Management</title>
     <link rel="stylesheet" href="css/transactionPage.css" />
+    <link rel="stylesheet" href="css/popup.css">
   </head>
 
   <body>
@@ -32,12 +34,7 @@
 
           <label for="date">Date:</label>
           <input type="date" id="date" name="date" required />
-          <div id="switch-fraudulen">
-            <label for="isFraudulent">Is Fraudulent:</label>
-            <input type="checkbox" id="isFraudulent" name="isFraudulent" />
-          </div>
-
-          <button type="submit">Add Transaction</button>
+          <button id="submit-transaction">Add Transaction</button>
         </form>
       </div>
       <div id="my-transactions-container" class="transaction-container">
@@ -47,12 +44,18 @@
         </div>
       </div>
     </div>
-    <div id="all-transactions-container" class="transaction-container">
-      <h2>All Transactions</h2>
-      <button id="toggle-transactions-btn">Hide Traceability</button>
-      <ul id="transaction-list"></ul>
+    <div id="miPopup" class="popup">
+      <div class="contenido">
+        <h2>Resultado del análisis</h2>
+        <p>¡La transacción se da detectado como no fraudulenta!</p>
+        <button id="botonCerrar" onclick="cerrarPopup()">Cerrar</button>
+
+      </div>
     </div>
+    <!--<button id="botonAbrir" onclick="mostrarPopup()">Abrir</button>-->
+    
     <script src="js/transaction.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/popup.js"></script>
   </body>
 </html>
