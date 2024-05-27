@@ -41,7 +41,7 @@ public class FraudDetectionService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false; // In case of an error, assume not fraudulent
+            return false;
         }
     }
 }

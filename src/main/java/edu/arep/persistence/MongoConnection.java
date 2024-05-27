@@ -15,7 +15,7 @@ public class MongoConnection {
     }
 
     public MongoCollection<Document> getCollection() {
-        MongoDatabase database = client.getDatabase("FraudDetectionDB");
-        return database.getCollection("Fraudes");
+        MongoDatabase database = client.getDatabase("FraudDetection");
+        return database.getCollection("Frauds");
     }
 }
